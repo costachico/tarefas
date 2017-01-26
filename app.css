@@ -1,0 +1,125 @@
+/* App Tarefas CSS */
+
+	[v-cloak] {
+      display: none;
+    }
+	
+	body {
+		background-color: #EAEAEA;
+	}
+	.navbar {
+		background-color: #61a1bc;
+		border-color: #EAEAEA;
+	}
+    h1{
+    	color:#fff;
+    	font-size:64px;
+    	font-family:'Pacifico', cursive;
+    	font-weight: normal;
+    	line-height:1;
+    	text-shadow:0 3px 0 rgba(0,0,0,0.1);
+    }
+	li h1 {
+		font-size:20px;
+		color:#CCC;
+	}
+	.quadro {
+		border-radius: 3px;
+		background: #FFF;
+		border-top: 3px solid #000;
+		margin: 0 15px;
+		margin-bottom: 20px;
+		min-height:100px;
+		box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+	}
+	.quadro-header {
+		color: #444;
+		display: block;
+		padding: 10px;
+		position: relative;
+	}
+	.quadro-title {
+		display: inline-block;
+		font-size: 18px;
+		margin: 0;
+		line-height: 1;
+	}
+	li { cursor: move; }
+	
+    footer p{
+        font-size:10px;
+        font-weight:bold;
+        color:#000;
+    }
+	
+/*		Quadros - Sortable		*/
+	
+	#S1, #S2, #S3, #S4 {
+    min-height: 20px;
+    list-style-type: none;
+    padding: 5px 0 0 0;
+    float: left;
+    margin-right: 10px;
+  }
+  #S1 li, #S2 li, #S3 li, #S4 li {
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+    font-size: 1.2em;
+    width: 160px;
+  }
+  #S4 #btn-move {
+	display: none;
+  }
+  
+/*	Modal
+	Origem: https://vuejs.org/v2/examples/modal.html
+*/
+	.modal-mask {
+	  position: fixed;
+	  z-index: 9998;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  background-color: rgba(0, 0, 0, .5);
+	  display: table;
+	  transition: opacity .3s ease;
+	}
+
+	.modal-wrapper {
+	  display: table-cell;
+	  vertical-align: middle;
+	}
+
+	.modal-container {
+	  width: 300px;
+	  margin: 0px auto;
+	  padding: 20px 30px;
+	  background-color: #fff;
+	  border-radius: 2px;
+	  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+	  transition: all .3s ease;
+	  font-family: Helvetica, Arial, sans-serif;
+	}
+
+	.modal-header h3 {
+	  margin-top: 0;
+	  color: #42b983;
+	}
+
+	.modal-body {
+	  margin: 20px 0;
+	}
+
+	.modal-default-button {
+	  float: right;
+	}
+
+	.modal-enter {
+	  opacity: 0;
+	}
+
+	.modal-leave-active {
+	  opacity: 0;
+	}
+

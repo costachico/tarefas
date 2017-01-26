@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Tarefas</title>
+        
+		<!-- Bootstrap CDN CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Font Awesome CDN CSS -->
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">	 
+		<!-- JQuery UI CDN CSS -->
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">		
+		<!-- Google Fonts - Pacifico -->
+		<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+		
+		<!-- CSS Customizado -->
+		<link rel="stylesheet" href="app.css">
+ 
+  </head>
+    <body>
+        <nav class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                   <h1>Tarefas</h1>
+                </div>
+            </div>
+        </nav>
+        <div class="jumbotron"></div>
+        <div id="app" class="container">
+            <div class="row">
+                <div class="col-md-2">
+				<button id="show-modal" type="button" class="btn btn-primary" @click="showModal = true"><i class="fa fa-edit"></i> Criar Tarefa</button>
+				<add-tarefa v-if="showModal" @close="showModal = false" v-on:add-item="addTarefa"></add-tarefa>	
+				
+				</div>
+				<div class="col-md-2 quadro">
+					<div class="quadro-header">
+						<h2 class="quadro-title">Pendentes</h2>
+					</div>				
+					<div class="quadro-body">					
+						<ul id="S1" class="connectedSortable">
+						<li></li>
+						  <lista-tarefa v-bind:tarefa-itens="tarefaLista" v-on:remove="removeTarefa"></lista-tarefa>
+						</ul>					
+					</div>					
+                </div>
+                <div class="col-md-2 quadro">
+					<div class="quadro-header">
+						<h2 class="quadro-title">Em Andamento</h2>
+					</div>	
+					<div class="quadro-body">					
+						<ul id="S2" class="connectedSortable">
+						<li></li>
+						</ul>					
+					</div>
+                </div>
+                <div class="col-md-2 quadro">
+					<div class="quadro-header">
+						<h2 class="quadro-title">Em Revisão</h2>
+					</div>
+					<div class="quadro-body">
+						<ul id="S3" class="connectedSortable">
+							<li></li>
+						</ul>
+					</div>
+                </div>
+                <div class="col-md-2 quadro">
+					<div class="quadro-header">
+						<h2 class="quadro-title">Concluídas</h2>
+					</div>
+					<div class="quadro-body">					
+						<ul id="S4" class="connectedSortable">
+						  <li></li>
+						</ul>					
+					</div>					
+                </div>					
+            </div>
+            <hr>
+            <footer>
+                <p>2017 | Francisco Costa</p>
+            </footer>
+        </div>  
+		
+        <!-- JavaScripts CDN -->
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.js"></script>
+		
+		<!-- Componentes Vue.js  -->
+		<script src="main.js"></script>
+
+<!-- JQuery UI para Drag & Drop das Tarefas -->
+<script>
+
+  $( function() {
+    $("#S1, #S2, #S3, #S4").sortable({
+      connectWith: ".connectedSortable"
+    }).disableSelection();
+  } );
+  $(document).on("click", ".btn-default",function() {
+	var nro = $(this).closest("ul").attr('id').substr(length - 1);
+	nro++;
+	$(this).closest("li").appendTo("#S"+nro);
+});
+</script>
+
+<!-- Template do Modal para Criar Tarefas -->
+<script type="text/x-template" id="modal-template">
+    <div class="modal-mask">
+      <div class="modal-wrapper">
+        <div class="modal-container">
+			<div class="modal-header">
+				<h3>Adicionar Tarefa</h3>
+			</div>
+			<div class="form">
+				<div class="input-group">
+					<span class="input-group-addon">Título</span>
+					<input type="text" class="form-control" v-model="txt1">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon">Descrição</span>
+					<input type="text" class="form-control" v-model="txt2">
+				</div>			
+				<div class="input-group">
+					<button v-on:click="addTarefa" @click="$emit('close')">Criar Tarefa</button>
+				</div>						
+			</div>
+        </div>
+      </div>
+    </div>
+</script>
+
+</body>
+</html>
